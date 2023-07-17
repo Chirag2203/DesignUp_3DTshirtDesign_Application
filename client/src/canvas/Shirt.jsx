@@ -23,7 +23,7 @@ const Shirt = () => {
         castShadow
         geometry={nodes.T_Shirt_male.geometry}
         material={materials.lambert1}
-        material-roughness={1}
+        material-roughness={2}
         dispose={null}
       >
         {snap.isFullTexture && (

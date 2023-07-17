@@ -1,6 +1,6 @@
 .Btn {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     border: none;
     border-radius: 50%;
     background-color: rgb(27, 27, 27);
@@ -15,15 +15,15 @@
   }
   
   .svgIcon {
-    fill: rgb(214, 178, 255);
+    fill: #ea580c;
   }
   
   .icon2 {
-    width: 18px;
-    height: 5px;
-    border-bottom: 2px solid rgb(182, 143, 255);
-    border-left: 2px solid rgb(182, 143, 255);
-    border-right: 2px solid rgb(182, 143, 255);
+    width: 15px;
+    height: 4px;
+    border-bottom: 2px solid #ea580c;
+    border-left: 2px solid #ea580c;
+    border-right: 2px solid #ea580c;
   }
   
  
@@ -34,7 +34,7 @@
   }
   
   .Btn:hover {
-    background-color: rgb(150, 94, 255);
+    background: radial-gradient( #ea580c,#dc2626);
     transition-duration: .3s;
   }
   
@@ -117,3 +117,170 @@
     box-shadow: inset 8px -4px 0px 0px #f8f8f4;
   }
   
+
+  @keyframes floating {
+    0%, 100% {
+      transform: translateY(0);
+    }
+  
+    50% {
+      transform: translateY(-5px);
+    }
+  }
+  
+  @keyframes particlesbtn {
+    0% {
+      transform: translateZ(0, 0);
+      opacity: 1;
+    }
+  
+    100% {
+      transform: translate(190px, 50px);
+      opacity: 0;
+    }
+  }
+  
+  .start-btn {
+    position: relative;
+    background: linear-gradient(to right, #ea580c, #fb923c);
+    display: inline-block;
+    background-size: 200% auto;
+    border: 1px solid;
+    border-radius: 25px;
+    color: white;
+    padding: 10px 20px;
+    font-size: 18px;
+    text-transform: uppercase;
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+    animation: floating 3s ease-in-out infinite;
+    transition: color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  }
+  
+  .start-btn::before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    border-radius: 30px;
+    box-shadow: 0 0 20px #FF7730;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    width: 5px;
+    height: 5px;
+    background: #FF7730;
+    animation: particlesbtn 2s infinite;
+  }
+  
+  .start-btn::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .start-btn:hover {
+    color: #c2410c;
+    font-weight: 800;
+    box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.4);
+    transform: scale(1.05);
+    background-position: right center;
+    background: linear-gradient(to right, #FFB900, #FF7730);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+
+  .gb-btn {
+    /* font-family: monospace; */
+    background-color: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    width: 80px;
+    height: 35px;
+    transition: .3s;
+  }
+  
+  .gb-btn:hover {
+    background-color: #1d4ed8;
+    box-shadow: 0 0 0 5px #3b83f65f;
+    color: #fff;
+  }
+  
+  .bookmarkBtn {
+    width: 100px;
+    height: 40px;
+    border-radius: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.349);
+    background-color: #3b82f6;;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition-duration: .3s;
+    overflow: hidden;
+  }
+  
+  .IconContainer {
+    width: 30px;
+    height: 30px;
+    background: linear-gradient(to bottom, #ea580c,#dc2626);
+    border-radius: 50%;
+    display: flex;
+    border: #1d4ed8 1px solid;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    z-index: 2;
+    transition-duration: .3s;
+  }
+  
+  .icon {
+    border-radius: 1px;
+    
+  }
+  
+  .text {
+    height: 100%;
+    width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    z-index: 1;
+    transition-duration: .3s;
+    font-size: 1.04em;
+  }
+  
+  .bookmarkBtn:hover .IconContainer {
+    width: 90px;
+    border-radius: 40px;
+    transition-duration: .3s;
+  }
+  
+  .bookmarkBtn:hover .text {
+    transform: translate(10px);
+    width: 0;
+    font-size: 0;
+    transition-duration: .3s;
+  }
+  
+  .bookmarkBtn:active {
+    transform: scale(0.95);
+    transition-duration: .3s;
+  }
+
+
+
+  .refresh-btn:hover{
+    animation: spin 1s linear infinite;
+  }
+  @keyframes spin {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
