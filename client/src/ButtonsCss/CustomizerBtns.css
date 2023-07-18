@@ -1,9 +1,9 @@
 .Btn {
-    width: 40px;
-    height: 40px;
+    width: 37px;
+    height: 37px;
     border: none;
     border-radius: 50%;
-    background-color: rgb(27, 27, 27);
+    background-color:#3b82f6;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -15,15 +15,15 @@
   }
   
   .svgIcon {
-    fill: #ea580c;
+    fill: white;
   }
   
   .icon2 {
     width: 15px;
     height: 4px;
-    border-bottom: 2px solid #ea580c;
-    border-left: 2px solid #ea580c;
-    border-right: 2px solid #ea580c;
+    border-bottom: 2px solid white;
+    border-left: 2px solid white;
+    border-right: 2px solid white;
   }
   
  
@@ -199,9 +199,9 @@
     background-color: #3b82f6;
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     width: 80px;
-    height: 35px;
+    height: 37px;
     transition: .3s;
   }
   
@@ -213,9 +213,9 @@
   
   .bookmarkBtn {
     width: 100px;
-    height: 40px;
-    border-radius: 40px;
-    border: 1px solid rgba(255, 255, 255, 0.349);
+    height: 37px;
+    border-radius: 10px;
+    /* border: 1px solid rgba(255, 255, 255, 0.349); */
     background-color: #3b82f6;;
     display: flex;
     align-items: center;
@@ -228,10 +228,10 @@
   .IconContainer {
     width: 30px;
     height: 30px;
-    background: linear-gradient(to bottom, #ea580c,#dc2626);
-    border-radius: 50%;
+    background: radial-gradient( #fc7c38,#dc2626);
+    border-radius: 10px;
     display: flex;
-    border: #1d4ed8 1px solid;
+    /* border: #1d4ed8 1px solid; */
     align-items: center;
     justify-content: center;
     overflow: hidden;
@@ -258,7 +258,7 @@
   
   .bookmarkBtn:hover .IconContainer {
     width: 90px;
-    border-radius: 40px;
+    border-radius: 10px;
     transition-duration: .3s;
   }
   
