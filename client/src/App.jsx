@@ -4,10 +4,12 @@ import Canvas from './canvas';
 import Customizer from './pages/Customizer';
 import Home from './pages/Home';
 import Profile from './pages/Profile';
+import PremiumPlansPage from './pages/PremiumPlansPage';
 import { useNavigate } from 'react-router-dom';
 import { ThemeProvider } from './components/ThemeContext';
 
 import CanvasHome from './Canvashome';
+import { Footer } from './components';
 // function CanvasHome() {
 //   return (
 //     <React.Fragment>
@@ -34,8 +36,11 @@ function App() {
           {/* <Route path='/Canvas' element={<Canvas />} /> */}
           <Route path='/' element={<CanvasHome handleClick={handleClick}/>} />
           <Route path='/Profile' element={<Profile />} />
+          <Route path='/PremiumPlanPage' element={<PremiumPlansPage />  } />
+        
         </Routes>
         <Customizer />
+    <Footer />
       </Router>
     </main>
     </ThemeProvider>

@@ -50,3 +50,250 @@
     box-shadow: inset 3px 3px 3px #0056ff,
                 inset -3px -3px 3px #00c2ff;
    }
+
+
+   /* inspired from this svgbackgrounds.com/ */
+.prem-btn {
+    width: fit-content;
+    display: flex;
+    padding: 0.6em 1.1em;
+    gap: 0.4rem;
+    font-weight: bold;
+    height: 37px;
+    border-radius: 20px;
+    text-shadow: 2px 2px 3px rgb(136 0 136 / 50%);
+    background: linear-gradient(15deg, #880088, #aa2068, #cc3f47, #de6f3d, #f09f33, #de6f3d, #cc3f47, #aa2068, #880088) no-repeat;
+    background-size: 300%;
+    background-position: left center;
+    transition: background .3s ease;
+    color: #fff;
+  }
+
+  
+  .prem-btn:hover {
+    background-size: 320%;
+    background-position: right center;
+  }
+  
+  .prem-btn:hover svg {
+    fill: #fff;
+  }
+  
+  .prem-btn svg {
+    width: 21px;
+    fill: #f09f33;
+    transition: .3s ease;
+  }
+  .prempage-header {
+    font-size: 2.0rem;
+    font-weight: 700;
+    font-family: inherit
+    /* background: linear-gradient(5deg, #420142, #230113, #cc3f47, #de6f3d, #d88922, #de5f24, #cc3f47, #aa2068, #880088); */
+    /* background-clip: text; Clip the background to the text */
+    /* -webkit-background-clip: text; For Safari */
+    /* color: transparent; Make the text transparent */
+  
+    /* You can also add text-shadow for better readability */
+    /* text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);    */
+  }
+  
+  /* .card {
+    position: relative;
+    width: 200px;
+    height: 250px;
+    border-radius: 14px;
+    z-index: 1111;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+    ;
+  }
+  
+  .bg {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 190px;
+    height: 240px;
+    z-index: 2;
+    background: rgba(255, 255, 255, .95);
+    backdrop-filter: blur(24px);
+    border-radius: 10px;
+    overflow: hidden;
+    outline: 2px solid white;
+  }
+  
+  .blob {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: #ff0000;
+    opacity: 1;
+    filter: blur(12px);
+    animation: blob-bounce 5s infinite ease;
+  }
+  
+  @keyframes blob-bounce {
+    0% {
+      transform: translate(-100%, -100%) translate3d(0, 0, 0);
+    }
+  
+    25% {
+      transform: translate(-100%, -100%) translate3d(100%, 0, 0);
+    }
+  
+    50% {
+      transform: translate(-100%, -100%) translate3d(100%, 100%, 0);
+    }
+  
+    75% {
+      transform: translate(-100%, -100%) translate3d(0, 100%, 0);
+    }
+  
+    100% {
+      transform: translate(-100%, -100%) translate3d(0, 0, 0);
+    }
+  } */
+
+  
+  .plan-card {
+    background: #fff;
+    width: 16rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    border-radius: 10px;
+    border-bottom: 4px solid rgb(0, 136, 255);
+    box-shadow: 0 6px 30px rgba(207, 212, 222, 0.3);
+    font-family: "Poppins", sans-serif;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+  }
+  .plan-card:hover{
+    box-shadow: 0 6px 30px rgba(163, 164, 170, 0.5);
+    transform: translateZ(0) scale(1.02);
+  }
+  .plan-card h2 {
+    margin-bottom: 15px;
+    font-size: 27px;
+    font-weight: 600;
+  }
+  
+  .plan-card h2 span {
+    display: block;
+    margin-top: -4px;
+    color: #4d4d4d;
+    font-size: 12px;
+    font-weight: 400;
+  }
+  
+  .etiquet-price {
+    position: relative;
+    background: #fdbd4a;
+    width: 15.26rem;
+    margin-left: -0.65rem;
+    padding: .2rem 1.2rem;
+    border-radius: 5px 0 0 5px;
+  }
+  .tickmark{
+    color: rgb(236, 129, 7);
+  }
+  .etiquet-price p {
+    margin: 0;
+    padding-top: .4rem;
+    display: flex;
+    font-size: 1.9rem;
+    font-weight: 500;
+  }
+  
+  .etiquet-price p:before {
+    /* content: "$"; */
+    margin-right: 5px;
+    font-size: 15px;
+    font-weight: 300;
+  }
+  
+  .etiquet-price p:after {
+    /* content: "/ handle"; */
+    margin-left: 5px;
+    font-size: 15px;
+    font-weight: 300;
+  }
+  
+  .etiquet-price div {
+    position: absolute;
+    bottom: -23px;
+    right: 0px;
+    width: 0;
+    height: 0;
+    border-top: 13px solid #c58102;
+    border-bottom: 10px solid transparent;
+    border-right: 13px solid transparent;
+    z-index: -6;
+  }
+  
+  .benefits-list {
+    margin-top: 16px;
+  }
+  
+  .benefits-list ul {
+    padding: 0;
+    font-size: 14px;
+  }
+  
+  .benefits-list ul li {
+    color: #4d4d4d;
+    list-style: none;
+    margin-bottom: .2rem;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+  }
+  
+  .benefits-list ul li svg {
+    width: .9rem;
+    fill: currentColor;
+  }
+  
+  .benefits-list ul li span {
+    font-weight: 300;
+  }
+  
+  .button-get-plan {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.2rem;
+  }
+  
+  .button-get-plan a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(2, 95, 177);
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    letter-spacing: .05rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+  
+  .button-get-plan a:hover {
+    transform: translateY(-8%);
+    box-shadow: 0 3px 10px rgba(207, 212, 222, 0.9);
+  }
+  
+  .button-get-plan .svg-rocket {
+    margin-right: 10px;
+    width: .9rem;
+    fill: currentColor;
+  }

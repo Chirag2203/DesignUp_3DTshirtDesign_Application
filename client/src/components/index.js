@@ -12,6 +12,8 @@ import ProfileButton from "./ProfileButton";
 import ThemeSwitch from "./ThemeSwitch";
 import { ThemeContext } from "./ThemeContext";
 import state  from "./store";
+import Footer from "./Footer";
+import SocialButton from "./SocialButton";
 export { 
   CustomButton,
   ColorPicker,
@@ -25,6 +27,8 @@ export {
   Loading,
   ProfileButton,
   ThemeSwitch,
+  Footer,
+  SocialButton,
 
   ThemeContext,
   state,

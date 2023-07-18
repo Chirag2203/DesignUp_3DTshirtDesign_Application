@@ -1,30 +1,36 @@
+// store.js
 
-import { proxy } from 'valtio';
+import { proxy } from "valtio";
 
-const state = proxy({
-  // ... other state variables
-  logoPosition: { x: 0, y: 0 }, // Initial position of the logo on the t-shirt
-});
-
-const moveLogoLeft = () => {
-  state.logoPosition.x -= 0.01; // Adjust the amount of movement as needed
-  state.logoPosition = { ...state.logoPosition };
+const initialState = {
+  intro: true,
+  // ... other initial state properties
+  logoPosition: { x: 0, y: 0 }, // Initialize the logo position to (0, 0)
 };
 
-const moveLogoRight = () => {
-  state.logoPosition.x += 0.5; // Adjust the amount of movement as needed
-  state.logoPosition = { ...state.logoPosition };
+const state = proxy(initialState);
+
+// Add functions to update logo position
+export const moveLogoLeft = () => {
+  state.logoPosition.x -= 0.5; // Move the logo left by 10 units (adjust this value as needed)
 };
 
-const moveLogoUp = () => {
-  state.logoPosition.y += 0.01; // Adjust the amount of movement as needed
-  state.logoPosition = { ...state.logoPosition };
+export const moveLogoRight = () => {
+  state.logoPosition.x += 0.5; // Move the logo right by 10 units (adjust this value as needed)
 };
 
-const moveLogoDown = () => {
-  state.logoPosition.y -= 0.01; // Adjust the amount of movement as needed
-  state.logoPosition = { ...state.logoPosition };
+export const moveLogoUp = () => {
+  state.logoPosition.y += 2; // Move the logo up by 10 units (adjust this value as needed)
 };
 
-  export { moveLogoLeft, moveLogoRight, moveLogoUp, moveLogoDown };
-  export default state;
+export const moveLogoDown = () => {
+  state.logoPosition.y -= 2; // Move the logo down by 10 units (adjust this value as needed)
+};
+export  const ScaleUp = () => {
+  state.logoScale += 0.1;
+};
+
+export const ScaleDown = () => {
+  state.logoScale = Math.max(0.1, state.logoScale - 0.1);
+};
+export default state;
