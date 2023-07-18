@@ -6,7 +6,9 @@
 @tailwind utilities;
 
 html {
-  font-family: "Inter", sans-serif;
+  font-family: "Inter", sans-serif ;
+  height: 100%;
+  width: 100%;
 }
 
 @supports (font-variation-settings: normal) {
@@ -18,6 +20,9 @@ html {
 .app {
   @apply relative w-full h-screen overflow-hidden;
 }
+/* .check{
+  @apply h-full w-0;
+} */
 
 .home {
   @apply w-full xl:h-full flex xl:justify-between justify-start items-start flex-col xl:py-8 xl:px-36 sm:p-8 p-6 max-xl:gap-7 absolute z-10;
@@ -79,9 +84,20 @@ html {
   animation: moveUpDown 5s infinite ease-in; /* Adjust the animation duration as needed */
 }
 
+ canvas{
+  height: 750px;
+  width:100%;
+}
+/* .check{
+  height: 1000px;
+
+}  */
+.editor{
+  @apply  justify-between;
+}
 
 .glassmorphism {
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(249, 244, 236, 0.25);
   box-shadow: 0 2px 30px 0 rgba(31, 38, 135, 0.07);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);

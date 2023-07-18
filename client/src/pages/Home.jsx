@@ -2,10 +2,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useSnapshot } from 'valtio';
 import React, { useState, useEffect } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
+import { useNavigate } from 'react-router-dom';
 // import ParticleEffect from './particle';
 
 import state from '../store';
-import { CustomButton, LoginButton, LogoutButton , ProfileButton, Loading } from '../components';
+import { CustomButton, LoginButton, LogoutButton , ProfileButton, Loading, ThemeSwitch} from '../components';
 import {
   headContainerAnimation,
   headContentAnimation,
@@ -13,26 +14,19 @@ import {
   slideAnimation
 } from '../config/motion';
 
-const Home = () => {
+
+const Home = ({handleClick}) => {
   const snap = useSnapshot(state);
 
-  // State to track the current theme (light or dark)
-const [isDarkMode, setIsDarkMode] = useState(false);
-
-// Function to toggle the theme
-const toggleTheme = () => {
-  setIsDarkMode((prevMode) => !prevMode);
-};
-
 // Apply the theme class to the body based on isDarkMode state
-useEffect(() => {
-  const body = document.body;
-  if (isDarkMode) {
-    body.classList.add('dark-mode');
-  } else {
-    body.classList.remove('dark-mode');
-  }
-}, [isDarkMode]);
+// useEffect(() => {
+//   const body = document.body;
+//   if (isDarkMode) {
+//     body.classList.add('dark-mode');
+//   } else {
+//     body.classList.remove('dark-mode');
+//   }
+// }, [isDarkMode]);
 
 //for checking loging status
 const {isLoading,error} = useAuth0();
@@ -61,18 +55,13 @@ const {isLoading,error} = useAuth0();
               <>
             <LoginButton/>
             <LogoutButton/>
-            <ProfileButton/>
+            <ProfileButton handleClick={handleClick}/>
             </> 
             )
             }
             </motion.div>
             </motion.div>
-            {/* Theme Toggle Button */}
-            <label className=" btn ts-container "  type='checkbox'>
-            <input onClick={toggleTheme} type="checkbox"></input>
-            <span class="slider"></span>
-              {/* {isDarkMode ? 'Light Mode' : 'Dark Mode'} */}
-            </label>
+            <ThemeSwitch/>
           </motion.div>
 
           <motion.div className="home-content" {...headContainerAnimation}>

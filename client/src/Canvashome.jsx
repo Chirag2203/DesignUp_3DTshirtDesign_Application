@@ -1,14 +1,14 @@
-// import React from 'react';
-// import Canvas from './canvas';
-// import Home from './pages/Home';
+import React from 'react';
+import Canvas from './canvas';
+import Home from './pages/Home';
 
-// function CanvasHome() {
-//   return (
-//     <div style={{ display: 'flex', flexDirection: 'row' }}>
-//       <Canvas />
-//       <Home />
-//     </div>
-//   );
-// }
+function CanvasHome({handleClick}) {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'col' }}>
+      <Home handleClick={handleClick} />
+      <Canvas />
+    </div>
+  );
+}
 
-// export default CanvasHome;
+export default CanvasHome;

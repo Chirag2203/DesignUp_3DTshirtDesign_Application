@@ -9,6 +9,9 @@ import LoginButton from "./LoginButton";
 // import Profile from "../pages/Profile";
 import Loading from "./Loading";
 import ProfileButton from "./ProfileButton";
+import ThemeSwitch from "./ThemeSwitch";
+import { ThemeContext } from "./ThemeContext";
+import state  from "./store";
 export { 
   CustomButton,
   ColorPicker,
@@ -21,5 +24,9 @@ export {
   // Profile,
   Loading,
   ProfileButton,
+  ThemeSwitch,
+
+  ThemeContext,
+  state,
 
 };
