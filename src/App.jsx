@@ -27,7 +27,7 @@ const handleClick = () => {
 function App() {
   return (
     <ThemeProvider>
-    <main>
+    <main className='flex flex-col '>
       <Router>
       <div className='main'>
         <div className='gradient' />
@@ -40,7 +40,7 @@ function App() {
         
         </Routes>
         <Customizer />
-    <Footer />
+      <Footer />
       </Router>
     </main>
     </ThemeProvider>

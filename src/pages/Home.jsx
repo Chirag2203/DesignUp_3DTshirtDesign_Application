@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 
 import state from "../store";
 import {
-  CustomButton,
   LoginButton,
   LogoutButton,
   ProfileButton,

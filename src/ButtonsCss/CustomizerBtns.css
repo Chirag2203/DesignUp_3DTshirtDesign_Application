@@ -212,7 +212,7 @@
   }
   
   .bookmarkBtn {
-    width: 100px;
+    width: 60px;
     height: 37px;
     border-radius: 10px;
     /* border: 1px solid rgba(255, 255, 255, 0.349); */
@@ -257,7 +257,9 @@
   }
   
   .bookmarkBtn:hover .IconContainer {
-    width: 90px;
+    width: 60px;
+    margin: 0px;
+    height: 37px;
     border-radius: 10px;
     transition-duration: .3s;
   }

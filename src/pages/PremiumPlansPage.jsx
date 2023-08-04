@@ -60,8 +60,8 @@ const PremiumPlansPage = () => {
             <ThemeSwitch />
           </motion.div>
         </motion.nav>
-        <span className="prempage-header flex justify-center mt-12 bg-gradient-to-r from-orange-500 to-rose-500 bg-clip-text text-transparent">
-          PREMIUM PLANS
+        <span className="prempage-header  items-center flex justify-center mt-12 bg-gradient-to-r from-orange-500 to-rose-500 bg-clip-text text-transparent">
+          PREMIUM PLANS <span className='text-sm font-light text-red-500'>(under build)</span>
         </span>
         <motion.div className="flex flex-wrap m-5 justify-center">
           {plans.map((plan, index) => (

@@ -55,7 +55,7 @@ html {
 
 
 .filepicker-container {
-  @apply absolute left-full ml-3 glassmorphism p-3 w-[195px] h-[220px] flex flex-col rounded-md;
+  @apply absolute left-full ml-3 glassmorphism p-3 w-[195px] h-auto flex flex-col rounded-md;
 }
 
 .filepicker-label {

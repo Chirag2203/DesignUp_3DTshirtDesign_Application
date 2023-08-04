@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { proxy,useSnapshot, snapshot } from "valtio";
+import { proxy, useSnapshot, snapshot } from "valtio";
 
 import html2canvas from "html2canvas";
 
@@ -12,14 +12,15 @@ import { EditorTabs, FilterTabs, DecalTypes } from "../config/constants";
 import { fadeAnimation, slideAnimation } from "../config/motion";
 import {
   ColorPicker,
-  CustomButton,
   FilePicker,
   Tab,
   DownloadButton,
-  ProfileButton,
   ThemeSwitch,
   SocialButton,
+  SavedDesignsPopup,
+  Design,
 } from "../components";
+import {} from "../Buttons";
 import {
   moveLogoLeft,
   moveLogoRight,
@@ -31,7 +32,6 @@ import {
 } from "../components/store";
 
 const Customizer = () => {
-   
   const handleMoveLeft = () => {
     moveLogoLeft();
   };
@@ -63,36 +63,71 @@ const Customizer = () => {
     state.logoRotation += 15; // Increase the rotation by 15 degrees on each click (adjust the angle as needed)
   };
 
-//reset button functionality
-// we need to iterate over the state object and reset all the properties except the intro property 
-//this happens in valtio
-const [initialState, setInitialState] = useState(snapshot(proxy(state)));
-useEffect(() => {
-  // Save the initial state when the component mounts
-  setInitialState(snapshot(proxy(state)));
-}, []);
-const handleResetClick = () => {
-  // Reset the state to the initial state
-   Object.keys(state).forEach((key) => {
-    if (key !== "intro") {
-      // Reset the logo position, scale, and rotation
-      if (key === "logoPosition") {
-        state[key] = defaultLogoPosition;
-      } else if (key === "logoScale") {
-        state[key] = 1;
-      } else if (key === "logoRotation") {
-        state[key] = 0;
-      } else {
-        state[key] = initialState[key];
+  //reset button functionality
+  // we need to iterate over the state object and reset all the properties except the intro property
+  //this happens in valtio
+  const [initialState, setInitialState] = useState(snapshot(proxy(state)));
+  useEffect(() => {
+    // Save the initial state when the component mounts
+    setInitialState(snapshot(proxy(state)));
+  }, []);
+  const handleResetClick = () => {
+    // Reset the state to the initial state
+    Object.keys(state).forEach((key) => {
+      if (key !== "intro") {
+        // Reset the logo position, scale, and rotation
+        if (key === "logoPosition") {
+          state[key] = defaultLogoPosition;
+        } else if (key === "logoScale") {
+          state[key] = 1;
+        } else if (key === "logoRotation") {
+          state[key] = 0;
+        } else {
+          state[key] = initialState[key];
+        }
       }
-    }
-  });
-};
-    
+    });
+  };
 
-  
+  const [savedDesigns, setSavedDesigns] = useState([]);
+  const handleBookmarkClick = () => {
+    // Capture the current design state
+    const currentDesign = {
+      logoPosition: state.logoPosition,
+      logoScale: state.logoScale,
+      logoRotation: state.logoRotation,
+      // Add more properties as needed based on your design state
+    };
 
-  
+    // Add the current design to the savedDesigns state
+    setSavedDesigns((prevSavedDesigns) => [...prevSavedDesigns, currentDesign]);
+  };
+
+  const handleSaveDesign = () => {
+    state.saveDesign(); // Call the saveDesign function from the state object
+    // alert("Design saved successfully!");
+  };
+
+  //for tab to hide when clicked
+  const tabContainerRef = useRef(null);
+
+  // Add an event listener to detect clicks outside the tab container
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        tabContainerRef.current &&
+        !tabContainerRef.current.contains(event.target)
+      ) {
+        setActiveEditorTab(""); // Hide the tab content when clicked outside
+      }
+    };
+
+    document.addEventListener("click", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside); // Remove the event listener when the component unmounts
+    };
+  }, []);
 
   const snap = useSnapshot(state);
 
@@ -175,12 +210,46 @@ const handleResetClick = () => {
       link.click();
     });
   };
+
+  const [designsState, setDesignsState] = useState([]);
+
+  useEffect(() => {
+    // Whenever the global state.designs changes, update the local state
+    setDesignsState(snap.designs);
+  }, [snap.designs]);
+  const handleDeleteDesign = (designId) => {
+    const updatedDesigns = snap.designs.filter(
+      (design) => design.id !== designId
+    );
+    state.designs = updatedDesigns;
+  };
+
+  // Function to load a design
+  const handleLoadDesign = (design) => {
+    state.logoPosition = design.logoPosition;
+    state.logoScale = design.logoScale;
+    state.logoRotation = design.logoRotation;
+    // state.fullDecal = design.fullDecal;
+    // state.logoDecal = design.logoDecal;
+  };
+  // Add the state and functions for the "Saved Designs" button
+  const [showSavedDesignsPopup, setShowSavedDesignsPopup] = useState(false);
+
+  const handleShowSavedDesignsPopup = () => {
+    setShowSavedDesignsPopup(true);
+  };
+
+  const handleCloseSavedDesignsPopup = () => {
+    setShowSavedDesignsPopup(false);
+  };
+
   return (
-    <AnimatePresence>
+    <AnimatePresence className="h-screen">
       {!snap.intro && (
         <>
           <motion.div
             key="custom"
+            ref={tabContainerRef}
             className="absolute top-0 left-0 z-10 "
             {...slideAnimation("left")}
           >
@@ -207,12 +276,12 @@ const handleResetClick = () => {
             {/* <div className='flex flex-col gap-10 items-end justify-center'> */}
             <span className="font-semibold text-lg">Move Logo</span>
             <div className="flex gap-2">
-            <button className="move-btn" onClick={handleMoveUp}>
-              Up
-            </button>
-            <button className="move-btn" onClick={handleMoveDown}>
-              Down
-            </button>
+              <button className="move-btn" onClick={handleMoveUp}>
+                Up
+              </button>
+              <button className="move-btn" onClick={handleMoveDown}>
+                Down
+              </button>
             </div>
             <div className="flex gap-2">
               <button className="move-btn" onClick={handleMoveLeft}>
@@ -224,12 +293,12 @@ const handleResetClick = () => {
             </div>
 
             <div className="flex gap-2">
-            <button className="move-btn" onClick={handleScaleUp}>
-              Scale +
-            </button>
-            <button className="move-btn" onClick={handleScaleDown}>
-              Scale -
-            </button>
+              <button className="move-btn" onClick={handleScaleUp}>
+                Scale +
+              </button>
+              <button className="move-btn" onClick={handleScaleDown}>
+                Scale -
+              </button>
             </div>
             <div className="flex gap-2">
               <button className="move-btn" onClick={handleRotateLeft}>
@@ -239,11 +308,10 @@ const handleResetClick = () => {
                 Rotate R
               </button>
             </div>
-            
+
             {/* </div> */}
-            <SocialButton/>
+            <SocialButton />
           </motion.div>
-            
 
           <motion.div
             className="absolute z-10 top-5  flex gap-5 justify-between items-center navh "
@@ -260,17 +328,27 @@ const handleResetClick = () => {
               </button>
               {/* <button    className='gb-btn'> Sign in </button> */}
               {/* add the reset function here */}
+              <button
+                className="gb-btn w-auto px-2"
+                onClick={handleShowSavedDesignsPopup}
+              >
+                Saved Designs
+              </button>
               {/* BOOKMARK */}
-              <button class="bookmarkBtn">
+              <button class="bookmarkBtn " onClick={handleSaveDesign}>
                 <span class="IconContainer">
                   <svg viewBox="0 0 384 512" height="0.9em" class="icon">
                     <path d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z"></path>
                   </svg>
                 </span>
-                <p class="text">Save</p>
+                {/* <p class="text">Save</p> */}
               </button>
+              {/* Step 1: Add the "Saved Designs" button */}
               {/* REFRESH */}
-              <button className="gb-btn w-9  rounded-3xl" onClick={handleResetClick}>
+              <button
+                className="gb-btn w-9  rounded-3xl"
+                onClick={handleResetClick}
+              >
                 <svg
                   viewBox="0 0 16 16"
                   class="bi bi-arrow-repeat"
@@ -285,10 +363,8 @@ const handleResetClick = () => {
                   ></path>
                 </svg>{" "}
               </button>
-              
               {/* <button  onClick={() => state.intro = true}  className='gb-btn'> Sa </button> */}
               <DownloadButton handleClick={captureCanvasAndDownload} />{" "}
-              {/* Use the custom DownloadButton */}
               <ThemeSwitch />
             </motion.div>
           </motion.div>
@@ -307,7 +383,16 @@ const handleResetClick = () => {
               />
             ))}
           </motion.div>
+          
         </>
+      )}
+      {showSavedDesignsPopup && (
+        <SavedDesignsPopup
+          designs={designsState} // Pass the designs to the popup
+          handleLoadDesign={handleLoadDesign}
+          handleDeleteDesign={handleDeleteDesign}
+          handleClose={handleCloseSavedDesignsPopup}
+        />
       )}
     </AnimatePresence>
   );

@@ -20,7 +20,7 @@ const CanvasModel = () => {
       className=" check"
     >
       <ambientLight intensity={0.5} />
-      {/* <Environment preset="city" /> */}
+      {/* <Environment preset="space" /> */}
 
       <CameraRig>
         <Backdrop />
@@ -29,7 +29,7 @@ const CanvasModel = () => {
           <Shirt logoPosition={snap.logoPosition} defaultLogoPosition={defaultLogoPosition} />
         </Center>
       </CameraRig>
-    </Canvas>
+    </Canvas> 
   )
 }
 
