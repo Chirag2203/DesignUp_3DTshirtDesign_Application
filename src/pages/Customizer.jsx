@@ -1,13 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { proxy, useSnapshot, snapshot } from "valtio";
-
 import html2canvas from "html2canvas";
-
-import config from "../config/config";
 import state from "../store";
-import { download } from "../assets";
-import { downloadCanvasToImage, reader } from "../config/helpers";
+import {  reader } from "../config/helpers";
 import { EditorTabs, FilterTabs, DecalTypes } from "../config/constants";
 import { fadeAnimation, slideAnimation } from "../config/motion";
 import {
@@ -26,9 +22,6 @@ import {
   moveLogoRight,
   moveLogoUp,
   moveLogoDown,
-  // scaleUp,
-  ScaleDown,
-  ScaleUp,
 } from "../components/store";
 
 const Customizer = () => {
@@ -56,15 +49,15 @@ const Customizer = () => {
   };
 
   const handleRotateLeft = () => {
-    state.logoRotation -= 15; // Decrease the rotation by 15 degrees on each click (adjust the angle as needed)
+    state.logoRotation -= 15; // Decrease the rotation by 15 degrees on each click 
   };
 
   const handleRotateRight = () => {
-    state.logoRotation += 15; // Increase the rotation by 15 degrees on each click (adjust the angle as needed)
+    state.logoRotation += 15; // Increase the rotation by 15 degrees on each click 
   };
 
   //reset button functionality
-  // we need to iterate over the state object and reset all the properties except the intro property
+  // we iterate over the state object and reset all the properties except the intro property
   //this happens in valtio
   const [initialState, setInitialState] = useState(snapshot(proxy(state)));
   useEffect(() => {
@@ -96,7 +89,6 @@ const Customizer = () => {
       logoPosition: state.logoPosition,
       logoScale: state.logoScale,
       logoRotation: state.logoRotation,
-      // Add more properties as needed based on your design state
     };
 
     // Add the current design to the savedDesigns state
@@ -105,7 +97,7 @@ const Customizer = () => {
 
   const handleSaveDesign = () => {
     state.saveDesign(); // Call the saveDesign function from the state object
-    // alert("Design saved successfully!");
+    alert("Design saved successfully!");
   };
 
   //for tab to hide when clicked
@@ -232,7 +224,6 @@ const Customizer = () => {
     // state.fullDecal = design.fullDecal;
     // state.logoDecal = design.logoDecal;
   };
-  // Add the state and functions for the "Saved Designs" button
   const [showSavedDesignsPopup, setShowSavedDesignsPopup] = useState(false);
 
   const handleShowSavedDesignsPopup = () => {
@@ -273,7 +264,6 @@ const Customizer = () => {
             className="absolute z-10 top-0 right-5 flex flex-col h-screen justify-center items-center  gap-2 "
             {...fadeAnimation}
           >
-            {/* <div className='flex flex-col gap-10 items-end justify-center'> */}
             <span className="font-semibold text-lg">Move Logo</span>
             <div className="flex gap-2">
               <button className="move-btn" onClick={handleMoveUp}>
@@ -309,7 +299,6 @@ const Customizer = () => {
               </button>
             </div>
 
-            {/* </div> */}
             <SocialButton />
           </motion.div>
 
@@ -326,24 +315,21 @@ const Customizer = () => {
                 {" "}
                 Go Back{" "}
               </button>
-              {/* <button    className='gb-btn'> Sign in </button> */}
-              {/* add the reset function here */}
+             {/* saved designs */}
               <button
                 className="gb-btn w-auto px-2"
                 onClick={handleShowSavedDesignsPopup}
               >
                 Saved Designs
               </button>
-              {/* BOOKMARK */}
+              {/* save design */}
               <button class="bookmarkBtn " onClick={handleSaveDesign}>
                 <span class="IconContainer">
                   <svg viewBox="0 0 384 512" height="0.9em" class="icon">
                     <path d="M0 48V487.7C0 501.1 10.9 512 24.3 512c5 0 9.9-1.5 14-4.4L192 400 345.7 507.6c4.1 2.9 9 4.4 14 4.4c13.4 0 24.3-10.9 24.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5 0 0 21.5 0 48z"></path>
                   </svg>
                 </span>
-                {/* <p class="text">Save</p> */}
               </button>
-              {/* Step 1: Add the "Saved Designs" button */}
               {/* REFRESH */}
               <button
                 className="gb-btn w-9  rounded-3xl"
@@ -363,7 +349,6 @@ const Customizer = () => {
                   ></path>
                 </svg>{" "}
               </button>
-              {/* <button  onClick={() => state.intro = true}  className='gb-btn'> Sa </button> */}
               <DownloadButton handleClick={captureCanvasAndDownload} />{" "}
               <ThemeSwitch />
             </motion.div>
@@ -386,6 +371,7 @@ const Customizer = () => {
           
         </>
       )}
+      {/* saved design popup reder */}
       {showSavedDesignsPopup && (
         <SavedDesignsPopup
           designs={designsState} // Pass the designs to the popup

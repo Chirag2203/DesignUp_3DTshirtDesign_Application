@@ -1,9 +1,9 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useSnapshot } from "valtio";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
-// import ParticleEffect from './particle';
+
 
 import state from "../store";
 import {
@@ -23,17 +23,6 @@ import {
 const Home = ({ handleClick }) => {
   const snap = useSnapshot(state);
 
-  // Apply the theme class to the body based on isDarkMode state
-  // useEffect(() => {
-  //   const body = document.body;
-  //   if (isDarkMode) {
-  //     body.classList.add('dark-mode');
-  //   } else {
-  //     body.classList.remove('dark-mode');
-  //   }
-  // }, [isDarkMode]);
-
-  //for checking loging status
   const { isLoading, error } = useAuth0();
 
   return (
@@ -109,7 +98,7 @@ const Home = ({ handleClick }) => {
               alt=""
             />
           </motion.div>
-          {/* Add the ParticleEffect component */}
+          
         </motion.section>
       )}
     </AnimatePresence>

@@ -16,8 +16,8 @@ const ProfilePage = () => {
   const [isEditingName, setIsEditingName] = useState(false); // Local state to toggle the edit mode
 
   if (!isAuthenticated) {
-    // If the user is not authenticated, you can redirect them to the login page or handle it accordingly.
-    // For this example, we'll simply show a message if the user is not logged in.
+    // If the user is not authenticated, redirect them to the login page or handle it accordingly.
+
     return (
       <div className="flex flex-col h-screen fm-5 p- ">
         <div className="flex justify-between h-32 items-center mx-12">
@@ -37,8 +37,7 @@ const ProfilePage = () => {
   }
 
   const handleSaveName = () => {
-    // Perform any server-side API call here to update the user's name on the server
-    // For this example, we'll simply update the local state with the edited name.
+    
     user.name = editedName;
     setIsEditingName(false); // Disable the edit mode after saving the name
   };

@@ -9,8 +9,7 @@ const ThemeSwitch = () => {
     <label className="btn ts-container" type="checkbox">
       <input checked={theme === 'dark'} onChange={toggleTheme} type="checkbox" />
       <span className="slider"></span>
-      {/* Display the current theme */}
-      {/* {theme === 'dark' ? 'Dark Mode' : 'Light Mode'} */}
+      
     </label>
   );
 };
